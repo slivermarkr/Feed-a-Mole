@@ -1,0 +1,54 @@
+.hole {
+  background-color: black;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 5rem;
+}
+
+.mole {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+img {
+  display: none;
+
+  /* display: block; */
+}
+.show {
+  display: block;
+}
+body {
+  background-image: url(./images/background.png);
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  cursor: url(./images/cursor.png), default;
+}
+.worm {
+  display: block;
+}
+.wormWrapper {
+  display: block;
+  width: 10%;
+  overflow: hidden;
+  transition: width -0.5s ease;
+  margin-top: 5rem;
+}
+.hidden {
+  display: none;
+}
+.hungry {
+  display: block;
+  cursor: url(./images/cursor-worm.png), default;
+}
+/* .fed img {
+  display: block;
+} */
