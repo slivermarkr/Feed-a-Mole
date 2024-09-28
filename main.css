@@ -1,54 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  cursor: url(./images/cursor.png), default;
+  background-color: #c0c86d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.bg {
+  background-image: url(./images/background.png);
+  background-repeat: no-repeat;
+  width: 1920px;
+  height: 1080px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .hole {
-  background-color: black;
+  background: black;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  margin-bottom: 5rem;
+  overflow: visible;
+  width: 267px;
+  height: 267px;
+}
+
+.hole-container {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mole {
-  width: 150px;
-  height: 150px;
   position: relative;
-}
-.wrapper {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  right: 30px;
 }
 
-img {
+.hungry {
+  cursor: url(./images/cursor-worm.png), default;
+}
+
+.gone {
   display: none;
-
-  /* display: block; */
 }
+
+.worm {
+  width: 1660px;
+}
+
+.worm-container {
+  overflow: hidden;
+  transition: width 0.5s ease-in-out;
+}
+
+.worm-box {
+  width: 1660px;
+}
+
+.win {
+  max-width: 100vw;
+  max-height: 100vh;
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
 .show {
   display: block;
 }
-body {
-  background-image: url(./images/background.png);
-  background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  cursor: url(./images/cursor.png), default;
-}
-.worm {
-  display: block;
-}
-.wormWrapper {
-  display: block;
-  width: 10%;
-  overflow: hidden;
-  transition: width -0.5s ease;
-  margin-top: 5rem;
-}
-.hidden {
-  display: none;
-}
-.hungry {
-  display: block;
-  cursor: url(./images/cursor-worm.png), default;
-}
-/* .fed img {
-  display: block;
-} */

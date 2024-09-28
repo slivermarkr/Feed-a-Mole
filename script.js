@@ -1,35 +1,122 @@
-const NUMBER_OF_HOLES = 10;
+const SAD_INTERVAL = 500;
 
-const wrapper = document.querySelector(".wrapper");
+const getSadInterval = () => Date.now() + SAD_INTERVAL;
 
-let loopStart = Date.now();
+function getGoneInterval() {
+  return Date.now() + Math.floor(Math.random() * 18000) + 2000;
+}
 
-const mole = {
-  id: Math.floor(Math.random() * 10),
-  status: "hidden",
-  isKing: false,
-};
+function getHungryInterval() {
+  return Date.now() + Math.floor(Math.random() * 3000) + 2000;
+}
 
-const createHoles = () => {
-  for (let i = 0; i < NUMBER_OF_HOLES; i++) {
-    const div = document.createElement("div");
-    div.classList.add("hole");
-    div.setAttribute("id", i);
-    wrapper.appendChild(div);
+const moles = [
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-0"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-1"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-2"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-3"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-4"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-5"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-6"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-7"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-8"),
+  },
+  {
+    status: "sad",
+    next: getSadInterval(),
+    king: true,
+    node: document.getElementById("hole-9"),
+  },
+];
+
+function getNextStatus(mole) {
+  switch (mole.status) {
+    case "sad":
+      mole.next = getSadInterval();
+      mole.status = "leaving";
+      mole.node.children[0].src = "./images/mole-leaving.png";
+      break;
+    case "leaving":
+      mole.next = getGoneInterval();
+      mole.status = "gone";
+      mole.node.children[0].classList.add("gone");
+      break;
+    case "gone":
+      mole.next = getHungryInterval();
+      mole.status = "hungry";
+      mole.node.children[0].classList.add("hungry");
+      mole.node.children[0].classList.remove("gone");
+
+      mole.node.children[0].src = "./images/mole-hungry.png";
+      break;
+    case "hungry":
+      mole.next = getSadInterval();
+      mole.status = "sad";
+      mole.node.children[0].classList.remove("hungry");
+
+      mole.node.children[0].src = "./images/mole-sad.png";
+      break;
   }
-};
+}
 
-const showMoleRandomly = () => {
-  (mole.id = Math.floor(Math.random() * 10)), console.log(mole.id);
-};
+let runAgainAt = Date.now() + 100;
+function nextFrame() {
+  const now = Date.now();
 
-const mainLoop = () => {
-  if (Date.now() > loopStart) {
-    showMoleRandomly();
+  if (runAgainAt <= now) {
+    console.log("now");
+    runAgainAt = now + 100;
+    for (let i = 0; i < moles.length; i++) {
+      if (moles[i].next <= now) {
+        getNextStatus(moles[i]);
+      }
+    }
+    runAgainAt = now + 100;
   }
-  loopStart = Date.now() + 100;
-  requestAnimationFrame(mainLoop);
-};
-createHoles();
-showMoleRandomly();
-mainLoop();
+  requestAnimationFrame(nextFrame);
+}
+nextFrame();
