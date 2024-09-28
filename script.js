@@ -76,6 +76,7 @@ const moles = [
 function getNextStatus(mole) {
   switch (mole.status) {
     case "sad":
+    case "fed":
       mole.next = getSadInterval();
       mole.status = "leaving";
       mole.node.children[0].src = "./images/mole-leaving.png";
@@ -103,12 +104,25 @@ function getNextStatus(mole) {
   }
 }
 
+function feed(e) {
+  if (e.target.tagName !== "IMG" || !e.target.classList.contains("hungry")) {
+    return;
+  }
+
+  console.log(+e.target.dataset.index);
+  const mole = moles[+e.target.dataset.index];
+
+  mole.status = "fed";
+  mole.next = getSadInterval();
+  mole.node.children[0].src = "./images/mole-fed.png";
+  mole.node.children[0].classList.remove("hungry");
+}
+
 let runAgainAt = Date.now() + 100;
 function nextFrame() {
   const now = Date.now();
 
   if (runAgainAt <= now) {
-    console.log("now");
     runAgainAt = now + 100;
     for (let i = 0; i < moles.length; i++) {
       if (moles[i].next <= now) {
@@ -119,4 +133,6 @@ function nextFrame() {
   }
   requestAnimationFrame(nextFrame);
 }
+document.querySelector(".bg").addEventListener("click", feed);
+
 nextFrame();
