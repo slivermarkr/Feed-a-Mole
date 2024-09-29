@@ -7,7 +7,7 @@ function getGoneInterval() {
 }
 
 function getHungryInterval() {
-  return Date.now() + Math.floor(Math.random() * 3000) + 2000;
+  return Date.now() + Math.floor(Math.random() * 2000) + 1000;
 }
 
 function getKingStatus() {
@@ -160,7 +160,7 @@ function nextFrame() {
   const now = Date.now();
 
   if (runAgainAt <= now) {
-    runAgainAt = now + 100;
+    // runAgainAt = now + 100;
     for (let i = 0; i < moles.length; i++) {
       if (moles[i].next <= now) {
         getNextStatus(moles[i]);
