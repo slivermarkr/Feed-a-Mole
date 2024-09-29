@@ -18,7 +18,7 @@ body {
 .bg {
   background-image: url(./images/background.png);
   background-repeat: no-repeat;
-  width: 1920px;
+  width: 100vw;
   height: 1080px;
   display: flex;
   flex-wrap: wrap;
@@ -30,8 +30,8 @@ body {
   background: black;
   border-radius: 50%;
   overflow: visible;
-  width: 267px;
-  height: 267px;
+  width: 150px;
+  height: 150px;
 }
 
 .hole-container {
@@ -43,7 +43,6 @@ body {
 
 .mole {
   position: relative;
-  right: 30px;
 }
 
 .hungry {
@@ -55,7 +54,7 @@ body {
 }
 
 .worm {
-  width: 1660px;
+  width: 100vw;
 }
 
 .worm-container {
@@ -64,9 +63,12 @@ body {
 }
 
 .worm-box {
-  width: 1660px;
+  width: 100vw;
 }
-
+img {
+  height: 150px;
+  width: 150px;
+}
 .win {
   max-width: 100vw;
   max-height: 100vh;

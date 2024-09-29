@@ -126,7 +126,6 @@ function feed(e) {
     return;
   }
 
-  console.log(+e.target.dataset.index);
   const mole = moles[+e.target.dataset.index];
 
   mole.status = "fed";
